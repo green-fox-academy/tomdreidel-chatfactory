@@ -1,13 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="utf-8"/>
   <title>Chat Factory</title>
 </head>
+
 <body>
+
 
 <h2>Welcome to CHAT FACTORY!</h2>
 <h3>-- powered by PostgreSQL, woohoo! --</h3>
+
+
+<table>
+  <colgroup span="6"></colgroup>
+  <tr>
+    <th>Id</th>
+    <th>Request Date</th>
+    <th>Log Level</th>
+    <th>Path</th>
+    <th>Method</th>
+    <th>Request Data</th>
+  </tr>
+  <tr th:each="log : ${logList}">
+    <td th:text="${log.getLogId()}"></td>
+    <td th:text="${log.getDateCreated()}"></td>
+    <td th:text="${log.getLogLevel()}"></td>
+    <td th:text="${log.getRequestPath()}"></td>
+    <td th:text="${log.getRequestMethod()}"></td>
+    <td th:text="${log.getRequestData()}"></td>
+  </tr>
+</table>
+
+<h3>
+  ...
+</h3>
 
 </body>
 </html>
