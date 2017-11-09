@@ -16,7 +16,7 @@ public class MainController {
 
   @RequestMapping("/")
   public String index(HttpServletRequest requestToCache, Model model) {
-    logRepository.save(new LogItem("LOG", requestToCache.getServletPath(), requestToCache.getMethod(), requestToCache.getQueryString()));
+    logRepository.save(new LogItem("LOG", requestToCache.getServletPath(), requestToCache.getMethod(), requestToCache.getRemoteAddr()));
     model.addAttribute("logList", logRepository.findAll());
     return "index";
   }
