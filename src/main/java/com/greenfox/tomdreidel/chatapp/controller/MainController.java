@@ -1,6 +1,8 @@
 package com.greenfox.tomdreidel.chatapp.controller;
 
+import com.greenfox.tomdreidel.chatapp.model.LogItem;
 import com.greenfox.tomdreidel.chatapp.repository.LogRepository;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +15,8 @@ public class MainController {
   LogRepository logRepository;
 
   @RequestMapping("/")
-  public String index(Model model) {
+  public String index(HttpServletRequest requestToCache, Model model) {
+    logRepository.save(new LogItem("LOG", requestToCache.getServletPath(), requestToCache.getMethod(), requestToCache.getQueryString()));
     model.addAttribute("logList", logRepository.findAll());
     return "index";
   }

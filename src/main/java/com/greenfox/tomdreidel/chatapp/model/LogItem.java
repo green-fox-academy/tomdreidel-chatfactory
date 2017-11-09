@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class LogItem {
@@ -35,8 +36,8 @@ public class LogItem {
     return logId;
   }
 
-  public Timestamp getDateCreated() {
-    return dateCreated;
+  public String getDateCreated() {
+    return String.valueOf(dateCreated.toLocalDateTime());
   }
 
   public String getRequestPath() {
