@@ -38,6 +38,9 @@
     <td th:text="${user.getDateCreated()}"></td>
     <td th:text="${user.getUserName()}"></td>
     <td th:text="${user.getUserAddress()}"></td>
+    <td>
+      <a th:href="@{'/users/' + ${user.getUserId()} + '/send'}"><button>Send</button></a>
+    </td>
 
     <!--user vs model attribute user-->
   </tr>
