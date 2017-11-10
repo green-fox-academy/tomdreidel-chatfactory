@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <title>Chat Factory</title>
+</head>
+
+<body>
+
+
+<h2>CHAT FACTORY!</h2>
+<h3>-- Add new user --</h3>
+
+<span>
+  <a th:href="@{/users}">
+    <button>Back</button>
+  </a>
+</span>
+
+  <form th:action="@{/users/add}" th:object="${user}" method="post">
+    <input type="text" th:field="*{userName}" placeholder="Enter name"/>
+    <button type="submit">Add user</button>
+  </form>
+
+
+
+
+<h3>
+  ...
+</h3>
+
+</body>
+</html>

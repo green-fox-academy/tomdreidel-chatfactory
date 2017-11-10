@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <title>Chat Factory</title>
+</head>
+
+<body>
+
+
+<h2>CHAT FACTORY!</h2>
+<h3>-- List of all logs --</h3>
+
+<span>
+  <a th:href="@{/}">
+    <button>Back</button>
+  </a>
+</span>
+
+
+<table>
+  <colgroup span="6"></colgroup>
+  <tr>
+    <th>Id</th>
+    <th>Request Date</th>
+    <th>Log Level</th>
+    <th>Path</th>
+    <th>Method</th>
+    <th>Request IP Address</th>
+    <th>Request Data</th>
+  </tr>
+  <tr th:each="log : ${logList}">
+    <td th:text="${log.getLogId()}"></td>
+    <td th:text="${log.getDateCreated()}"></td>
+    <td th:text="${log.getLogLevel()}"></td>
+    <td th:text="${log.getRequestPath()}"></td>
+    <td th:text="${log.getRequestMethod()}"></td>
+    <td th:text="${log.getRequestAddress()}"></td>
+    <td th:text="${log.getRequestData()}"></td>
+  </tr>
+</table>
+
+<h3>
+  ...
+</h3>
+
+</body>
+</html>

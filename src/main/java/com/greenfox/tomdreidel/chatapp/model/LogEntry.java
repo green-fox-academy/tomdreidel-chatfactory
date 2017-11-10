@@ -6,10 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-public class LogItem {
+public class LogEntry {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long logId;
@@ -18,17 +17,19 @@ public class LogItem {
   private String logLevel;
   private String requestPath;
   private String requestMethod;
+  private String requestAddress;
   private String requestData;
 
-  public LogItem() {
+  public LogEntry() {
     this.dateCreated = Timestamp.valueOf(LocalDateTime.now());
   }
 
-  public LogItem(String logLevel, String requestPath, String requestMethod, String requestData) {
+  public LogEntry(String logLevel, String requestPath, String requestMethod, String requestAddress, String requestData) {
     this.dateCreated = Timestamp.valueOf(LocalDateTime.now());
     this.logLevel = logLevel;
     this.requestPath = requestPath;
     this.requestMethod = requestMethod;
+    this.requestAddress = requestAddress;
     this.requestData = requestData;
   }
 
@@ -44,31 +45,30 @@ public class LogItem {
     return requestPath;
   }
 
-  public void setRequestPath(String requestPath) {
-    this.requestPath = requestPath;
-  }
-
   public String getRequestMethod() {
     return requestMethod;
-  }
-
-  public void setRequestMethod(String requestMethod) {
-    this.requestMethod = requestMethod;
   }
 
   public String getLogLevel() {
     return logLevel;
   }
 
-  public void setLogLevel(String logLevel) {
-    this.logLevel = logLevel;
+  public String getRequestAddress() {
+    return requestAddress;
   }
 
   public String getRequestData() {
     return requestData;
   }
 
-  public void setRequestData(String requestData) {
-    this.requestData = requestData;
+  public String consoleLog() {
+    return "New request: " +
+        dateCreated +
+        " " + logLevel +
+        " " + requestPath +
+        " " + requestMethod +
+        " " + requestAddress +
+        " " + requestData;
   }
+
 }
