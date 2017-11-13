@@ -28,7 +28,7 @@ public class LogService {
     String chatAppLoglevel = System.getenv("CHAT_APP_LOGLEVEL");
     System.out.println(chatAppLoglevel);
 //    (response.getStatus() == 200 ? "INFO" : "ERROR")
-    LogEntry logResult = new LogEntry("INFO", request.getServletPath(), request.getMethod(), request.getRemoteAddr(), paramBuilder);
+    LogEntry logResult = new LogEntry(chatAppLoglevel, request.getServletPath(), request.getMethod(), request.getRemoteAddr(), paramBuilder);
     logRepository.save(logResult);
 
   //    Log to console
