@@ -25,13 +25,15 @@ public class LogService {
       String tempValue = request.getParameterValues(tempName)[0];
       paramBuilder += tempName + "=" + tempValue + "; ";
     }
-
-    LogEntry logResult = new LogEntry((response.getStatus() == 200 ? "INFO" : "ERROR"), request.getServletPath(), request.getMethod(), request.getRemoteAddr(), paramBuilder);
+    String chatAppLoglevel = System.getenv("CHAT_APP_LOGLEVEL");
+    System.out.println(chatAppLoglevel);
+//    (response.getStatus() == 200 ? "INFO" : "ERROR")
+    LogEntry logResult = new LogEntry("INFO", request.getServletPath(), request.getMethod(), request.getRemoteAddr(), paramBuilder);
     logRepository.save(logResult);
 
   //    Log to console
     System.out.println((char)27 + "[" + (logResult.getLogLevel().equals("ERROR") ? "31" : "34") + "m" + logResult.consoleLog() + (char)27 + "[0m");
-    System.out.println(response.getStatus());
+//    System.out.println(response.getStatus());
   }
 
   public List<LogEntry> listAllLogs() {

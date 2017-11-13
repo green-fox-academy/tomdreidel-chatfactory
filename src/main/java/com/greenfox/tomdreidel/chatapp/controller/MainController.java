@@ -26,6 +26,7 @@ public class MainController {
   protected void logging(HttpServletRequest request, HttpServletResponse response) {
     logService.addLog(request, response);
 
+
 //    Cant get ERROR status
   }
 
