@@ -23,11 +23,15 @@ public class MainController {
   @Autowired
   UserService userService;
 
+  @ExceptionHandler(Exception.class)
+  public void handleError(HttpServletRequest request, HttpServletResponse response) {
+    logService.addLog(request, response, "ERROR");
+  }
+
   @ModelAttribute
   protected void logging(HttpServletRequest request, HttpServletResponse response) {
-    logService.addLog(request, response);
+    logService.addLog(request, response, "INFO");
 
-//    @ExceptionHandler
 
 
 //    Cant get ERROR status
@@ -57,7 +61,12 @@ public class MainController {
   }
 
   @PostMapping("/users/add")
-  public String addUser(@ModelAttribute ChatUser user) {
+  public String addUser (@ModelAttribute ChatUser user) throws Exception {
+if (user.getUserName().equals("p")) {
+  throw new Exception();
+}
+
+
     userService.addUser(user);
     return "redirect:/users";
   }

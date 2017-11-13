@@ -15,7 +15,8 @@ public class LogService {
   @Autowired
   LogRepository logRepository;
 
-  public void addLog(HttpServletRequest request, HttpServletResponse response) {
+  public void addLog(HttpServletRequest request, HttpServletResponse response,
+      String status) {
   //    Log to database
     String paramBuilder = "";
     Enumeration<String> parameterNames = request.getParameterNames();
@@ -26,14 +27,13 @@ public class LogService {
       paramBuilder += tempName + "=" + tempValue + "; ";
     }
     String chatAppLoglevel = System.getenv("CHAT_APP_LOGLEVEL");
-    System.out.println(chatAppLoglevel);
-//    (response.getStatus() == 200 ? "INFO" : "ERROR")
     LogEntry logResult = new LogEntry(chatAppLoglevel, request.getServletPath(), request.getMethod(), request.getRemoteAddr(), paramBuilder);
-    logRepository.save(logResult);
 
-  //    Log to console
-    System.out.println((char)27 + "[" + (logResult.getLogLevel().equals("ERROR") ? "31" : "34") + "m" + logResult.consoleLog() + (char)27 + "[0m");
-//    System.out.println(response.getStatus());
+    if (status.equals("ERROR") || chatAppLoglevel.equals("INFO")) {
+      logRepository.save(logResult);
+      System.out.println((char)27 + "[" + (logResult.getLogLevel().equals("ERROR") ? "31" : "34") + "m" + logResult.consoleLog() + (char)27 + "[0m");
+    }
+
   }
 
   public List<LogEntry> listAllLogs() {

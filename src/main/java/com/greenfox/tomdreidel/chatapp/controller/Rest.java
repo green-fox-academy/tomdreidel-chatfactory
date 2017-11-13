@@ -30,8 +30,7 @@ public class Rest {
   UserService userService;
 
   @RequestMapping(value = "/users/{id}/send")
-  public @ResponseBody
-  ResponseEntity<String> sendUser(@PathVariable long id) {
+  public ResponseEntity<String> sendUser(@PathVariable long id) {
 
     RestTemplate sendUser = new RestTemplate();
 
