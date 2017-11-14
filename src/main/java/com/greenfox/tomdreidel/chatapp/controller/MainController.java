@@ -7,6 +7,8 @@ import com.greenfox.tomdreidel.chatapp.service.MessageService;
 import com.greenfox.tomdreidel.chatapp.service.UserService;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -49,12 +51,19 @@ public class MainController {
     return "logs";
   }
 
-  @RequestMapping("/messages")
-  public String messages(Model model) {
+  @MessageMapping("/messages")
+  @SendTo("/api/message/receive")
+  public String messages(Model model) throws Exception {
     model.addAttribute("message", new ChatMessage());
     model.addAttribute("messages", messageService.paginatedMessages());
     return "messages";
   }
+
+
+
+
+
+
 
   @RequestMapping("/users")
   public String userList(Model model) {
