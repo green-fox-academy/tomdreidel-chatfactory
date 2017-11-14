@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface MessageRepository extends CrudRepository<ChatMessage, Long> {
 
-  @Query(value = "SELECT * FROM chat_message ORDER BY created_at ASC LIMIT 10", nativeQuery = true)
+  @Query(value = "SELECT * FROM chat_message ORDER BY created_at ASC LIMIT 10 OFFSET ((SELECT count(*) from chat_message) - 10)", nativeQuery = true)
   public List<ChatMessage> messagePaginated();
 
 }
