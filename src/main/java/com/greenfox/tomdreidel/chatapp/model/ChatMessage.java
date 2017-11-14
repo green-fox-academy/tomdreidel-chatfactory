@@ -24,6 +24,7 @@ public class ChatMessage {
 
   public ChatMessage() {
     Random newId = new Random();
+    this.userName = "tomdreidel";
     this.id = newId.nextInt(8999999) + 1000000;
     this.createdAt = Timestamp.valueOf(LocalDateTime.now());
   }
