@@ -25,14 +25,13 @@ public class MessageService {
 
   public Status sendMessage(ChatMessage message) {
     RestTemplate template = new RestTemplate();
-    String url = "https://oraclechat.herokuapp.com/api/message/receive";
-//    String url = System.getenv("CHAT_APP_PEER_ADDRESS");
+//    String url = "https://oraclechat.herokuapp.com/api/message/receive";
+    String url = System.getenv("CHAT_APP_PEER_ADDRESS");
 //    String url = "http://localhost:8080/api/message/receive";
 //    String url = "https://chatfactory.herokuapp.com/api/message/receive";
 //    HttpHeaders headers = new HttpHeaders();
 //    headers.set("Content-Type", "application/json");
     Client client = new Client();
-    ChatMessage chatMessage = new ChatMessage("mzik");
     Wrapper sendIt = new Wrapper(client, message);
     HttpEntity<Wrapper> httpEntity = new HttpEntity<>(sendIt);
     Status response = template.postForObject(url, httpEntity, Status.class);
