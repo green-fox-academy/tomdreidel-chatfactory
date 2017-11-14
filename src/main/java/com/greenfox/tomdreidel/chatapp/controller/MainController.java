@@ -52,7 +52,7 @@ public class MainController {
   }
 
   @MessageMapping("/messages")
-  @SendTo("/api/message/receive")
+  @RequestMapping("/messages")
   public String messages(Model model) throws Exception {
     model.addAttribute("message", new ChatMessage());
     model.addAttribute("messages", messageService.paginatedMessages());
