@@ -55,7 +55,6 @@ public class MainController {
   public String messages(Model model) {
     model.addAttribute("message", new ChatMessage());
     model.addAttribute("messages", messageService.listAllMessages());
-    model.addAttribute("userList", userService.listAllUsers());
     return "messages";
   }
 
@@ -85,6 +84,7 @@ public class MainController {
   public String sendMessage(@RequestBody ChatMessage message) throws JsonParseException {
 
 
+    messageService.addMessage(message);
     messageService.sendMessage(message);
     return "redirect:/messages";
   }

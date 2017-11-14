@@ -17,20 +17,14 @@
   </a>
 </span>
 
-<span>
-  <a th:href="@{/users/add}">
-    <button>Add new message</button>
-  </a>
-</span>
 
 
 <table>
-  <colgroup span="6"></colgroup>
+  <colgroup span="1"></colgroup>
   <tr>
     <th>Message</th>
-
-
   </tr>
+
   <tr th:each="message : ${messages}">
     <td th:text="${message.getText()}"></td>
 

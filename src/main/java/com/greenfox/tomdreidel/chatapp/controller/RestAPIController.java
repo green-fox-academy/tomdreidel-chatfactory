@@ -55,24 +55,24 @@ public class RestAPIController {
   }
 
 
-  @RequestMapping(value = "/users/{id}/send")
-  public ResponseEntity<String> sendUser(@PathVariable long id) {
-
-    RestTemplate sendUser = new RestTemplate();
-
-    HttpHeaders header = new HttpHeaders();
-//    header.set("Host", "localhost:8080");
-    header.set("Content-Type", "application/json");
-    header.set("Cache-Control", "no-cache");
-
-    MultiValueMap<String, String> content = new LinkedMultiValueMap();
-    content.add("title", userRepository.findOne(id).getUserName().toUpperCase());
-
-    HttpEntity<MultiValueMap<String, String>> builtRequest = new HttpEntity<>(content, header);
-
-    ResponseEntity<String> message = sendUser
-        .exchange("https://tocan.herokuapp.com/add", HttpMethod.POST, builtRequest, String.class);
-
+//  @RequestMapping(value = "/users/{id}/send")
+//  public ResponseEntity<String> sendUser(@PathVariable long id) {
+//
+//    RestTemplate sendUser = new RestTemplate();
+//
+//    HttpHeaders header = new HttpHeaders();
+////    header.set("Host", "localhost:8080");
+//    header.set("Content-Type", "application/json");
+//    header.set("Cache-Control", "no-cache");
+//
+//    MultiValueMap<String, String> content = new LinkedMultiValueMap();
+//    content.add("title", userRepository.findOne(id).getUserName().toUpperCase());
+//
+//    HttpEntity<MultiValueMap<String, String>> builtRequest = new HttpEntity<>(content, header);
+//
+//    ResponseEntity<String> message = sendUser
+//        .exchange("https://tocan.herokuapp.com/add", HttpMethod.POST, builtRequest, String.class);
+//
 
 
 //    final String uri = "http://localhost:8080/users/add/rest";
@@ -81,12 +81,12 @@ public class RestAPIController {
 
 //    addRestUser(newUser);
 //    addRestTodo(new Todo(userRepository.findOne(id).getUserName()));
-    return message;
+//    return message;
 
 //    ChatUser result = restTemplate.postForObject( uri, newUser, ChatUser.class);
 //    return result;
 
-  }
+//  }
 
   @RequestMapping(value = "/users/todo/{id}")
   public String sendAPI(@PathVariable long id) throws JsonParseException {
