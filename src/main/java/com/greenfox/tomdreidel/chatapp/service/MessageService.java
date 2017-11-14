@@ -23,19 +23,21 @@ public class MessageService {
     messageRepository.save(message);
   }
 
-  public void sendMessage(ChatMessage message) {
-    String url = System.getenv("https://oraclechat.herokuapp.com/api/message/receive");
-//    String url = System.getenv("CHAT_APP_PEER_ADDRESS");
-//    String url = "https://chatfactory.herokuapp.com/api/message/receive";
-    HttpHeaders headers = new HttpHeaders();
-    headers.set("Content-Type", "application/json");
-    Client client = new Client();
-    ChatMessage chatMessage = new ChatMessage();
-    chatMessage.setText("bezik");
-    Wrapper sendIt = new Wrapper(client, chatMessage);
-    HttpEntity<Wrapper> httpEntity = new HttpEntity<Wrapper>(sendIt, headers);
+  public Status sendMessage(ChatMessage message) {
     RestTemplate template = new RestTemplate();
-    template.postForObject(url, httpEntity, ResponseEntity.class);
+    String url = "https://oraclechat.herokuapp.com/api/message/receive";
+//    String url = System.getenv("CHAT_APP_PEER_ADDRESS");
+//    String url = "http://localhost:8080/api/message/receive";
+//    String url = "https://chatfactory.herokuapp.com/api/message/receive";
+//    HttpHeaders headers = new HttpHeaders();
+//    headers.set("Content-Type", "application/json");
+    Client client = new Client();
+    ChatMessage chatMessage = new ChatMessage("mzik");
+    Wrapper sendIt = new Wrapper(client, message);
+    HttpEntity<Wrapper> httpEntity = new HttpEntity<>(sendIt);
+    Status response = template.postForObject(url, httpEntity, Status.class);
+
+    return response;
   }
 
   public Iterable<ChatMessage> listAllMessages() {
