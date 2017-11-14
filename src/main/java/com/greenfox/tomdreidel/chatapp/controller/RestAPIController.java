@@ -62,7 +62,7 @@ public class RestAPIController {
 //    Thread.sleep(1000); // simulated delay
 //    return message;
 //  }
-  @MessageMapping("/api/message/receive")
+  @MessageMapping
   @PostMapping("/api/message/receive")
   @CrossOrigin("*")
   public ResponseEntity receiveMessage(@RequestBody Wrapper wrapper) {

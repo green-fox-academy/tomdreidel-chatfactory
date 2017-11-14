@@ -23,9 +23,7 @@ public class MessageService {
 
   public Status sendMessage(ChatMessage message) {
     RestTemplate template = new RestTemplate();
-//    String url = System.getenv("CHAT_APP_PEER_ADDRESS");
-    String url = "https://oraclechat.herokuapp.com/api/message/receive";
-    System.out.println(url);
+    String url = System.getenv("CHAT_APP_PEER_ADDRESS");
 
     Wrapper sendIt = new Wrapper(new Client(), message);
     HttpEntity<Wrapper> httpEntity = new HttpEntity<>(sendIt);
