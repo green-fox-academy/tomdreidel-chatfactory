@@ -35,5 +35,4 @@ public class LogService {
   public List<LogEntry> listAllLogs() {
     return logRepository.recentLogFirst();
   }
-
 }

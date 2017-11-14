@@ -1,6 +1,5 @@
 package com.greenfox.tomdreidel.chatapp.controller;
 
-import com.fasterxml.jackson.core.JsonParseException;
 import com.greenfox.tomdreidel.chatapp.model.ChatMessage;
 import com.greenfox.tomdreidel.chatapp.model.ChatUser;
 import com.greenfox.tomdreidel.chatapp.service.LogService;
@@ -14,9 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MainController {
@@ -55,7 +52,7 @@ public class MainController {
   @RequestMapping("/messages")
   public String messages(Model model) {
     model.addAttribute("message", new ChatMessage());
-    model.addAttribute("messages", messageService.listAllMessages());
+    model.addAttribute("messages", messageService.paginatedMessages());
     return "messages";
   }
 
