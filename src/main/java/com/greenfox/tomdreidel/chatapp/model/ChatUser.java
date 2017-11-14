@@ -58,4 +58,10 @@ public class ChatUser {
   public void setDateCreated(Timestamp dateCreated) {
     this.dateCreated = dateCreated;
   }
+
+  public String sendToAPI() {
+    return "{\"title\" : \"" +
+        userName + "\"" +
+        "}";
+  }
 }
