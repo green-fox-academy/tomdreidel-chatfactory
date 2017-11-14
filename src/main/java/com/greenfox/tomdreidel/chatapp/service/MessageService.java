@@ -23,8 +23,8 @@ public class MessageService {
   }
 
   public ResponseEntity<HttpEntity> sendMessage(ChatMessage message) {
-//    String url = System.getenv("CHAT_APP_PEER_ADDRESS");
-    String url = "https://chatfactory.herokuapp.com/api/message/receive";
+    String url = System.getenv("CHAT_APP_PEER_ADDRESS");
+//    String url = "https://chatfactory.herokuapp.com/api/message/receive";
     HttpHeaders headers = new HttpHeaders();
     headers.set("Content-Type", "application/json");
     Wrapper sendIt = new Wrapper(new Client(), message);
