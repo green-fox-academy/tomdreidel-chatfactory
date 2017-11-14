@@ -51,19 +51,13 @@ public class MainController {
     return "logs";
   }
 
-  @MessageMapping("/messages")
+
   @RequestMapping("/messages")
   public String messages(Model model) throws Exception {
     model.addAttribute("message", new ChatMessage());
     model.addAttribute("messages", messageService.paginatedMessages());
     return "messages";
   }
-
-
-
-
-
-
 
   @RequestMapping("/users")
   public String userList(Model model) {
