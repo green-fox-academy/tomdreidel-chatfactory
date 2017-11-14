@@ -87,9 +87,4 @@ public class MainController {
     return "redirect:/messages";
   }
 
-  @PostMapping("/messages/save")
-  public String saveMessage(@ModelAttribute ChatMessage message) {
-    messageService.addMessage(message);
-    return "redirect:/messages";
-  }
 }
