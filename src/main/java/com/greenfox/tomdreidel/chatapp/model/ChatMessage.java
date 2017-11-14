@@ -12,20 +12,20 @@ public class ChatMessage {
   private long id;
   private String userName;
   private String text;
-  private Timestamp sendDate;
+  private Timestamp createdAt;
 
   public ChatMessage(String userName, String text) {
     Random newId = new Random();
     this.id = newId.nextInt(8999999) + 1000000;
     this.userName = userName;
     this.text = text;
-    this.sendDate = Timestamp.valueOf(LocalDateTime.now());
+    this.createdAt = Timestamp.valueOf(LocalDateTime.now());
   }
 
   public ChatMessage() {
     Random newId = new Random();
     this.id = newId.nextInt(8999999) + 1000000;
-    this.sendDate = Timestamp.valueOf(LocalDateTime.now());
+    this.createdAt = Timestamp.valueOf(LocalDateTime.now());
   }
 
   public long getId() {
@@ -48,8 +48,8 @@ public class ChatMessage {
     this.text = text;
   }
 
-  public Timestamp getSendDate() {
-    return sendDate;
+  public Timestamp getCreatedAt() {
+    return createdAt;
   }
 
 }

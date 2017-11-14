@@ -101,7 +101,7 @@ public class RestAPIController {
   @PostMapping("/api/message/receive")
   @CrossOrigin("*")
   public ResponseEntity receiveMessage(@RequestBody Wrapper wrapper) {
-//    if (wrapper.getMessage().getSendDate()==null||wrapper.getMessage().getText()==null||wrapper.getMessage().getUserName()==null) {
+//    if (wrapper.getMessage().getCreatedAt()==null||wrapper.getMessage().getText()==null||wrapper.getMessage().getUserName()==null) {
 //      return new ResponseEntity(new Status("error", "Missing field(s)"), HttpStatus.UNAUTHORIZED);
 //    } else {
       messageService.addMessage(wrapper.getMessage());
