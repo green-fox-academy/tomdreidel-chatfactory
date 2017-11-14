@@ -85,7 +85,7 @@ public class MainController {
   public String sendMessage(@ModelAttribute ChatMessage message) {
 
 
-    messageService.addMessage(message);
+//    messageService.addMessage(message);
     messageService.sendMessage(message);
     return "redirect:/messages";
   }

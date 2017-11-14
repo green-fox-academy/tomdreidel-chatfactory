@@ -2,6 +2,7 @@ package com.greenfox.tomdreidel.chatapp.service;
 
 import com.greenfox.tomdreidel.chatapp.model.ChatMessage;
 import com.greenfox.tomdreidel.chatapp.model.Client;
+import com.greenfox.tomdreidel.chatapp.model.Status;
 import com.greenfox.tomdreidel.chatapp.model.Wrapper;
 import com.greenfox.tomdreidel.chatapp.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class MessageService {
     messageRepository.save(message);
   }
 
-  public ResponseEntity<Wrapper> sendMessage(ChatMessage message) {
+  public void sendMessage(ChatMessage message) {
 //    String url = System.getenv("CHAT_APP_PEER_ADDRESS");
     String url = "https://chatfactory.herokuapp.com/api/message/receive";
     HttpHeaders headers = new HttpHeaders();
@@ -30,8 +31,7 @@ public class MessageService {
     Wrapper sendIt = new Wrapper(new Client(), message);
     HttpEntity<Wrapper> httpEntity = new HttpEntity<Wrapper>(sendIt, headers);
     RestTemplate template = new RestTemplate();
-    ResponseEntity<Wrapper> response = template.postForObject(url, httpEntity, ResponseEntity.class);
-    return response;
+    template.postForObject(url, httpEntity, ResponseEntity.class);
   }
 
   public Iterable<ChatMessage> listAllMessages() {

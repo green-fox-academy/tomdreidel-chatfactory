@@ -4,7 +4,7 @@ public class Client {
   private String id;
 
   public Client() {
-    this.id = "janosdobi";
+    this.id = "tomdreidel";
   }
 
   public String getId() {

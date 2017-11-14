@@ -14,10 +14,10 @@ public class ChatMessage {
   private String text;
   private Timestamp createdAt;
 
-  public ChatMessage(String userName, String text) {
+  public ChatMessage(String text) {
     Random newId = new Random();
     this.id = newId.nextInt(8999999) + 1000000;
-    this.userName = userName;
+    this.userName = "tomdreidel";
     this.text = text;
     this.createdAt = Timestamp.valueOf(LocalDateTime.now());
   }
@@ -27,6 +27,8 @@ public class ChatMessage {
     this.id = newId.nextInt(8999999) + 1000000;
     this.createdAt = Timestamp.valueOf(LocalDateTime.now());
   }
+
+
 
   public long getId() {
     return id;

@@ -10,6 +10,9 @@ public class Wrapper {
     this.message = message;
   }
 
+  public Wrapper() {
+  }
+
   public Client getClient() {
     return client;
   }
