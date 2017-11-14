@@ -22,15 +22,15 @@ public class MessageService {
     messageRepository.save(message);
   }
 
-  public ResponseEntity<HttpEntity> sendMessage(ChatMessage message) {
-    String url = System.getenv("CHAT_APP_PEER_ADDRESS");
-//    String url = "https://chatfactory.herokuapp.com/api/message/receive";
+  public ResponseEntity<Wrapper> sendMessage(ChatMessage message) {
+//    String url = System.getenv("CHAT_APP_PEER_ADDRESS");
+    String url = "https://chatfactory.herokuapp.com/api/message/receive";
     HttpHeaders headers = new HttpHeaders();
     headers.set("Content-Type", "application/json");
     Wrapper sendIt = new Wrapper(new Client(), message);
     HttpEntity<Wrapper> httpEntity = new HttpEntity<Wrapper>(sendIt, headers);
     RestTemplate template = new RestTemplate();
-    ResponseEntity<HttpEntity> response = template.postForObject(url, httpEntity, ResponseEntity.class);
+    ResponseEntity<Wrapper> response = template.postForObject(url, httpEntity, ResponseEntity.class);
     return response;
   }
 

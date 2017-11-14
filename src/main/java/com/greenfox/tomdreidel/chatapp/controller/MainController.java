@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MainController {
@@ -80,12 +81,18 @@ public class MainController {
   }
 
 
-  @RequestMapping(value = "/messages/send")
-  public String sendMessage(@RequestBody ChatMessage message) throws JsonParseException {
+  @PostMapping("/messages/send")
+  public String sendMessage(@ModelAttribute ChatMessage message) {
 
 
     messageService.addMessage(message);
     messageService.sendMessage(message);
+    return "redirect:/messages";
+  }
+
+  @PostMapping("/messages/save")
+  public String saveMessage(@ModelAttribute ChatMessage message) {
+    messageService.addMessage(message);
     return "redirect:/messages";
   }
 }

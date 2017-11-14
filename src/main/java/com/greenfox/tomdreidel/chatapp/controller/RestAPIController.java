@@ -46,7 +46,7 @@ public class RestAPIController {
   @ExceptionHandler(Exception.class)
   public String handleError(HttpServletRequest request) {
     logService.addLog(request, "EXCEPTION");
-    return "redirect:/users";
+    return "Hello Jani";
   }
 
   @ModelAttribute

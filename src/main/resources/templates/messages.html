@@ -42,6 +42,11 @@
 </form>
 
 
+<form th:action="@{/messages/save}" th:object="${message}" method="post">
+  <input type="text" th:field="*{text}" placeholder="Enter text"/>
+  <button type="submit">Save message</button>
+</form>
+
 
 </body>
 </html>
