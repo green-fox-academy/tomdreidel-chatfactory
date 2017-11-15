@@ -29,8 +29,6 @@ public class ChatMessage {
     this.createdAt = Timestamp.valueOf(LocalDateTime.now());
   }
 
-
-
   public long getId() {
     return id;
   }

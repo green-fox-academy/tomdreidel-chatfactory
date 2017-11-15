@@ -17,6 +17,7 @@ public class LogService {
   public void addLog(HttpServletRequest request, String status) {
     String paramBuilder = "";
     Enumeration<String> parameterNames = request.getParameterNames();
+
     while (parameterNames.hasMoreElements()) {
       String tempName = parameterNames.nextElement();
       String tempValue = request.getParameterValues(tempName)[0];

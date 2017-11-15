@@ -1,7 +1,7 @@
 package com.greenfox.tomdreidel.chatapp.repository;
 
-import com.greenfox.tomdreidel.chatapp.model.ChatUser;
 import java.util.List;
+import com.greenfox.tomdreidel.chatapp.model.ChatUser;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

@@ -20,4 +20,8 @@ public class UserService {
   public List<ChatUser> listAllUsers() {
     return userRepository.alphabeticalUserList();
   }
+
+  public void deleteUser(long id) {
+    userRepository.delete(id);
+  }
 }

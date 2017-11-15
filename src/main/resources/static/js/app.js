@@ -1,22 +1,20 @@
 var stompClient = null;
 
 function connect() {
-  var socket = new SockJS('/messages');
+  var socket = new SockJS('/server');
   stompClient = Stomp.over(socket);
   stompClient.connect({}, function(frame) {
-    // setConnected(true);
     console.log('Stomp: ' + frame);
-    stompClient.subscribe('/api/message/receive', function() {
+    stompClient.subscribe('/socket', function() {
       location.reload();
     });
   });
 }
 
-  function disconnect() {
-    if (stompClient != null) {
-      stompClient.disconnect();
-    }
-    console.log("Disconnected");
-  }
+  connect();
 
-  connect()
+// Auto-refresh
+//
+// setTimeout(function() {
+//   location.reload();
+// }, 5000);

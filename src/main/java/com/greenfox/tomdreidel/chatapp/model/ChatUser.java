@@ -14,7 +14,6 @@ public class ChatUser {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long userId;
   private Timestamp dateCreated;
-
   private String userName;
   private String userAddress;
 
@@ -57,11 +56,5 @@ public class ChatUser {
 
   public void setDateCreated(Timestamp dateCreated) {
     this.dateCreated = dateCreated;
-  }
-
-  public String sendToAPI() {
-    return "{\"title\" : \"" +
-        userName + "\"" +
-        "}";
   }
 }

@@ -3,16 +3,12 @@
 <head>
   <meta charset="utf-8"/>
   <title>Chat Factory</title>
-
-  <!--<script src="static/js/jquery.js"></script>-->
   <script type="text/javascript" th:src="@{/js/sockjs.min.js}" />
   <script type="text/javascript" th:src="@{/js/stomp.min.js}" />
   <script type="text/javascript" th:src="@{/js/app.js}" />
-
 </head>
 
 <body>
-
 
 <h2>CHAT FACTORY!</h2>
 <h3>-- List of all messages --</h3>
@@ -23,30 +19,23 @@
   </a>
 </span>
 
-
-
 <table>
-  <colgroup span="1"></colgroup>
+  <colgroup span="2"></colgroup>
   <tr>
+    <th>From</th>
     <th>Message</th>
   </tr>
 
   <tr th:each="message : ${messages}">
+    <td th:text="${message.getUserName()}"></td>
     <td th:text="${message.getText()}"></td>
-
-    <!--<td>-->
-      <!--<a th:href="@{'/users/todo/' + ${user.getUserId()}}"><button>Send</button></a>-->
-    <!--</td>-->
-
   </tr>
 </table>
-
 
 <form th:action="@{/messages/send}" th:object="${message}" method="post">
   <input type="text" th:field="*{text}" placeholder="Enter text"/>
   <button type="submit">Send message</button>
 </form>
-
 
 </body>
 </html>

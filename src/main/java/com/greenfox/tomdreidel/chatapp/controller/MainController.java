@@ -7,13 +7,12 @@ import com.greenfox.tomdreidel.chatapp.service.MessageService;
 import com.greenfox.tomdreidel.chatapp.service.UserService;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -51,7 +50,6 @@ public class MainController {
     return "logs";
   }
 
-
   @RequestMapping("/messages")
   public String messages(Model model) throws Exception {
     model.addAttribute("message", new ChatMessage());
@@ -80,14 +78,16 @@ public class MainController {
     return "redirect:/users";
   }
 
+  @PostMapping("/users/delete/{id}")
+  public String addUser (@PathVariable long id) {
+    userService.deleteUser(id);
+    return "redirect:/users";
+  }
 
   @PostMapping("/messages/send")
   public String sendMessage(@ModelAttribute ChatMessage message) {
-
-
     messageService.addMessage(message);
     messageService.sendMessage(message);
     return "redirect:/messages";
   }
-
 }

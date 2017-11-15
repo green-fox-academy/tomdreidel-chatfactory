@@ -22,12 +22,14 @@ public class MessageService {
   }
 
   public Status sendMessage(ChatMessage message) {
-    RestTemplate template = new RestTemplate();
+    RestTemplate restTemplate = new RestTemplate();
+
     String url = System.getenv("CHAT_APP_PEER_ADDRESS");
 
     Wrapper sendIt = new Wrapper(new Client(), message);
+
     HttpEntity<Wrapper> httpEntity = new HttpEntity<>(sendIt);
-    Status response = template.postForObject(url, httpEntity, Status.class);
+    Status response = restTemplate.postForObject(url, httpEntity, Status.class);
     return response;
   }
 

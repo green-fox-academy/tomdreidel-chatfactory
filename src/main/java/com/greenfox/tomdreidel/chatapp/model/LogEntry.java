@@ -13,7 +13,6 @@ public class LogEntry {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long logId;
   private Timestamp dateCreated;
-
   private String logLevel;
   private String requestPath;
   private String requestMethod;
@@ -70,5 +69,4 @@ public class LogEntry {
         " " + requestAddress +
         " " + requestData;
   }
-
 }

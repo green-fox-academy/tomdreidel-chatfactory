@@ -7,7 +7,6 @@
 
 <body>
 
-
 <h2>CHAT FACTORY!</h2>
 <h3>-- List of all users --</h3>
 
@@ -23,9 +22,8 @@
   </a>
 </span>
 
-
 <table>
-  <colgroup span="6"></colgroup>
+  <colgroup span="4"></colgroup>
   <tr>
     <th>User ID</th>
     <th>Registration Date</th>
@@ -39,18 +37,10 @@
     <td th:text="${user.getUserName()}"></td>
     <td th:text="${user.getUserAddress()}"></td>
     <td>
-      <a th:href="@{'/users/todo/' + ${user.getUserId()}}"><button>Send</button></a>
+      <a th:href="@{'/users/delete/' + ${user.getUserId()}}"><button>Delete</button></a>
     </td>
-
-    <!--user vs model attribute user-->
   </tr>
 </table>
-
-
-
-<h3>
-  ...
-</h3>
 
 </body>
 </html>
