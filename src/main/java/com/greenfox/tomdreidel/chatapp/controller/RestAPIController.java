@@ -50,10 +50,10 @@ public class RestAPIController {
   @PostMapping("/api/message/receive")
   @CrossOrigin("*")
   public ResponseEntity receiveMessage(@RequestBody Wrapper wrapper) {
-    if (wrapper.getMessage().getCreatedAt()==null||wrapper.getMessage().getText()==null||wrapper.getMessage().getUserName()==null) {
+    if (wrapper.getMessage().getTimestamp()==null||wrapper.getMessage().getText()==null||wrapper.getMessage().getUsername()==null) {
       return new ResponseEntity(new Status("error", "Missing field(s)"), HttpStatus.UNAUTHORIZED);
     } else {
-      messageService.addMessage(wrapper.getMessage());
+      messageService.addMessage(wrapper, 1);
       template.convertAndSend("/socket", "hello");
       return new ResponseEntity(new Status("ok"), HttpStatus.OK);
     }

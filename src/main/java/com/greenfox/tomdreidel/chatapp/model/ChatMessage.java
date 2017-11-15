@@ -10,35 +10,35 @@ import javax.persistence.Id;
 public class ChatMessage {
   @Id
   private long id;
-  private String userName;
+  private String username;
   private String text;
-  private Timestamp createdAt;
+  private Timestamp timestamp;
 
   public ChatMessage(String text) {
     Random newId = new Random();
     this.id = newId.nextInt(8999999) + 1000000;
-    this.userName = "tomdreidel";
+    this.username = "tomdreidel";
     this.text = text;
-    this.createdAt = Timestamp.valueOf(LocalDateTime.now());
+    this.timestamp = Timestamp.valueOf(LocalDateTime.now());
   }
 
   public ChatMessage() {
     Random newId = new Random();
-    this.userName = "tomdreidel";
+    this.username = "tomdreidel";
     this.id = newId.nextInt(8999999) + 1000000;
-    this.createdAt = Timestamp.valueOf(LocalDateTime.now());
+    this.timestamp = Timestamp.valueOf(LocalDateTime.now());
   }
 
   public long getId() {
     return id;
   }
 
-  public String getUserName() {
-    return userName;
+  public String getUsername() {
+    return username;
   }
 
-  public void setUserName(String userName) {
-    this.userName = userName;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public String getText() {
@@ -49,8 +49,8 @@ public class ChatMessage {
     this.text = text;
   }
 
-  public Timestamp getCreatedAt() {
-    return createdAt;
+  public Timestamp getTimestamp() {
+    return timestamp;
   }
 
 }

@@ -17,7 +17,8 @@
 </span>
 
   <form th:action="@{/users/add}" th:object="${user}" method="post">
-    <input type="text" th:field="*{userName}" placeholder="Enter name"/>
+    <input type="text" th:field="*{username}" placeholder="Enter name"/>
+    <input type="text" th:field="*{userAddress}" placeholder="Enter full API url"/>
     <button type="submit">Add user</button>
   </form>
 

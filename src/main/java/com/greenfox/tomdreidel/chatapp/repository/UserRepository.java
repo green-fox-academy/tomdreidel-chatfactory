@@ -10,4 +10,7 @@ public interface UserRepository extends CrudRepository<ChatUser, Long> {
   @Query(value = "SELECT * FROM chat_user ORDER BY user_name ASC", nativeQuery = true)
   public List<ChatUser> alphabeticalUserList();
 
+  @Query(value = "SELECT * FROM chat_user WHERE user_id = ?1", nativeQuery = true)
+  public List<ChatUser> handleById(long user_id);
+
 }

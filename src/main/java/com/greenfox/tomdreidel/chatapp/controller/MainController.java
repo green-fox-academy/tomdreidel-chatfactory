@@ -2,6 +2,8 @@ package com.greenfox.tomdreidel.chatapp.controller;
 
 import com.greenfox.tomdreidel.chatapp.model.ChatMessage;
 import com.greenfox.tomdreidel.chatapp.model.ChatUser;
+import com.greenfox.tomdreidel.chatapp.model.Client;
+import com.greenfox.tomdreidel.chatapp.model.Wrapper;
 import com.greenfox.tomdreidel.chatapp.service.LogService;
 import com.greenfox.tomdreidel.chatapp.service.MessageService;
 import com.greenfox.tomdreidel.chatapp.service.UserService;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
@@ -54,6 +57,8 @@ public class MainController {
   public String messages(Model model) throws Exception {
     model.addAttribute("message", new ChatMessage());
     model.addAttribute("messages", messageService.paginatedMessages());
+    model.addAttribute("userList", userService.listAllUsers());
+
     return "messages";
   }
 
@@ -85,9 +90,10 @@ public class MainController {
   }
 
   @PostMapping("/messages/send")
-  public String sendMessage(@ModelAttribute ChatMessage message) {
-    messageService.addMessage(message);
-    messageService.sendMessage(message);
+  public String sendMessage(@ModelAttribute ChatMessage message, @RequestParam(name = "recipient", required = false, defaultValue = "157") long id) {
+    Wrapper wrapper = new Wrapper(new Client(), message);
+    messageService.addMessage(wrapper, id);
+    messageService.sendMessage(wrapper, id);
     return "redirect:/messages";
   }
 }

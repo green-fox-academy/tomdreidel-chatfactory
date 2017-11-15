@@ -27,13 +27,18 @@
   </tr>
 
   <tr th:each="message : ${messages}">
-    <td th:text="${message.getUserName()}"></td>
+    <td th:text="${message.getUsername()}"></td>
     <td th:text="${message.getText()}"></td>
   </tr>
 </table>
 
 <form th:action="@{/messages/send}" th:object="${message}" method="post">
-  <input type="text" th:field="*{text}" placeholder="Enter text"/>
+  <input type="text" th:field="${message.text}" placeholder="Enter text"/>
+  <select th:name="recipient" >
+    <option value="157">Select Recipient</option>
+    <option th:each="user : ${userList}" th:value="${user.getUserId()}" th:text="${user.getUserName()}"></option>
+  </select>
+
   <button type="submit">Send message</button>
 </form>
 
