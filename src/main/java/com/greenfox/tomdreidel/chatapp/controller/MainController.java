@@ -75,10 +75,7 @@ public class MainController {
   }
 
   @PostMapping("/users/add")
-  public String addUser (@ModelAttribute ChatUser user) throws Exception {
-    if (user.getUserName().equals("p")) {
-      throw new Exception();
-    }
+  public String addUser (@ModelAttribute ChatUser user) {
     userService.addUser(user);
     return "redirect:/users";
   }
