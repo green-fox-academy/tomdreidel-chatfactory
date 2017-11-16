@@ -1,5 +1,7 @@
 package com.greenfox.tomdreidel.chatapp.controller;
 
+import com.greenfox.tomdreidel.chatapp.model.ChatMessage;
+import com.greenfox.tomdreidel.chatapp.model.Client;
 import com.greenfox.tomdreidel.chatapp.model.MessageContainer;
 import com.greenfox.tomdreidel.chatapp.model.Status;
 import com.greenfox.tomdreidel.chatapp.model.Wrapper;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -72,6 +75,24 @@ public class RestAPIController {
   public ResponseEntity getUserList() {
     return new ResponseEntity<>(userService.listAllUsers(), HttpStatus.OK);
   }
+
+  @PostMapping("api/message/send")
+  @CrossOrigin("*")
+  public ResponseEntity sendAPI(@RequestBody ChatMessage message, @RequestParam(name = "recipient", required = false, defaultValue = "157") long id) {
+    Wrapper wrapper = new Wrapper(new Client(), message);
+
+    if (wrapper.getMessage().getTimestamp()==null||wrapper.getMessage().getText()==null||wrapper.getMessage().getUsername()==null) {
+      return new ResponseEntity(new Status("error", "Missing field(s)"), HttpStatus.UNAUTHORIZED);
+    } else {
+      messageService.addMessage(wrapper, id);
+      messageService.sendMessage(wrapper, id);
+      template.convertAndSend("/socket", "hello");
+      return new ResponseEntity(new Status("ok"), HttpStatus.OK);
+    }
+
+  }
+
+
 
 
 

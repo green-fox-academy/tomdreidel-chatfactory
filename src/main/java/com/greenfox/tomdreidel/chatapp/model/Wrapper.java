@@ -1,5 +1,7 @@
 package com.greenfox.tomdreidel.chatapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 public class Wrapper {
 
   private Client client;

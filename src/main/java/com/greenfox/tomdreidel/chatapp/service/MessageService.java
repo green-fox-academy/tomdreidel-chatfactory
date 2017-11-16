@@ -34,10 +34,12 @@ public class MessageService {
     String url = userRepository.handleById(id).get(0).getUserAddress();
     System.out.println(url);
 
-    Wrapper sendIt = new Wrapper(new Client(), wrapper.getMessage());
+    Wrapper sendIt = new Wrapper(new Client(), new ChatMessage(wrapper.getMessage().getText()));
+//    Wrapper sendIt = new Wrapper(new Client(), new ChatMessage("m2m2m2m2m2m2m"));
 
-    HttpEntity<Wrapper> httpEntity = new HttpEntity<>(sendIt);
-    Status response = restTemplate.postForObject(url, httpEntity, Status.class);
+
+//    HttpEntity<Wrapper> httpEntity = new HttpEntity<>(wrapper);
+    Status response = restTemplate.postForObject(url, sendIt, Status.class);
     return response;
   }
 
