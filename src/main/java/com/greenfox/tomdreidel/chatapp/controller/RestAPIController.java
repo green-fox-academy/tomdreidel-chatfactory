@@ -70,6 +70,12 @@ public class RestAPIController {
     return new ResponseEntity<>(messageService.listAllMessages(), HttpStatus.OK);
   }
 
+  @GetMapping("/api/message/current")
+  @CrossOrigin("*")
+  public ResponseEntity getCurrentList() {
+    return new ResponseEntity<>(messageService.paginatedMessages(), HttpStatus.OK);
+  }
+
   @GetMapping("/api/user/all")
   @CrossOrigin("*")
   public ResponseEntity getUserList() {
