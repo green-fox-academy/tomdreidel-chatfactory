@@ -49,10 +49,6 @@ public class MessageService {
     return messageRepository.messagePaginated();
   }
 
-  public void getMessageList(Object object) {
-    RestTemplate restTemplate = new RestTemplate();
-  }
-
   public MessageContainer getMessageList() {
     MessageContainer response = new MessageContainer();
     listAllMessages().forEach(ChatMessage -> response.addMessage(ChatMessage));

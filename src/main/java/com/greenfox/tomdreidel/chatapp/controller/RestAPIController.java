@@ -67,6 +67,12 @@ public class RestAPIController {
     return new ResponseEntity<>(messageService.listAllMessages(), HttpStatus.OK);
   }
 
+  @GetMapping("/api/user/all")
+  @CrossOrigin("*")
+  public ResponseEntity getUserList() {
+    return new ResponseEntity<>(userService.listAllUsers(), HttpStatus.OK);
+  }
+
 
 
 }
