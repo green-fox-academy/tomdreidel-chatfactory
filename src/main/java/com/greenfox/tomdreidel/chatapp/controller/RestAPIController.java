@@ -1,5 +1,6 @@
 package com.greenfox.tomdreidel.chatapp.controller;
 
+import com.greenfox.tomdreidel.chatapp.model.MessageContainer;
 import com.greenfox.tomdreidel.chatapp.model.Status;
 import com.greenfox.tomdreidel.chatapp.model.Wrapper;
 import com.greenfox.tomdreidel.chatapp.repository.UserRepository;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -58,4 +60,13 @@ public class RestAPIController {
       return new ResponseEntity(new Status("ok"), HttpStatus.OK);
     }
   }
+
+  @GetMapping("/api/message/all")
+  @CrossOrigin("*")
+  public ResponseEntity getMessageList() {
+    return new ResponseEntity<>(messageService.listAllMessages(), HttpStatus.OK);
+  }
+
+
+
 }

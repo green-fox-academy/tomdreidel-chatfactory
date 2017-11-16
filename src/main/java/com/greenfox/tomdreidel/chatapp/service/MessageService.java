@@ -2,6 +2,7 @@ package com.greenfox.tomdreidel.chatapp.service;
 
 import com.greenfox.tomdreidel.chatapp.model.ChatMessage;
 import com.greenfox.tomdreidel.chatapp.model.Client;
+import com.greenfox.tomdreidel.chatapp.model.MessageContainer;
 import com.greenfox.tomdreidel.chatapp.model.Status;
 import com.greenfox.tomdreidel.chatapp.model.Wrapper;
 import com.greenfox.tomdreidel.chatapp.repository.MessageRepository;
@@ -46,5 +47,15 @@ public class MessageService {
 
   public Iterable<ChatMessage> paginatedMessages() {
     return messageRepository.messagePaginated();
+  }
+
+  public void getMessageList(Object object) {
+    RestTemplate restTemplate = new RestTemplate();
+  }
+
+  public MessageContainer getMessageList() {
+    MessageContainer response = new MessageContainer();
+    listAllMessages().forEach(ChatMessage -> response.addMessage(ChatMessage));
+    return response;
   }
 }
